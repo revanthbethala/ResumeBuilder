@@ -22,6 +22,7 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
   const email = user?.emailAddresses[0].emailAddress
   return (
     <div className="space-y-4">
+      {name}
       <h2 className="text-xl font-semibold mb-4">Personal Information</h2>
       <div className="flex items-center space-x-2">
         <User className="w-5 h-5 text-gray-500" />
