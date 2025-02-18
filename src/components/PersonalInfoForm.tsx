@@ -1,5 +1,6 @@
 import React from "react";
 import { User, Mail, Phone, MapPin, Linkedin } from "lucide-react";
+import { useUser } from "@clerk/clerk-react";
 
 interface PersonalInfoFormProps {
   personalInfo: {
@@ -16,6 +17,9 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
   personalInfo,
   onChange,
 }) => {
+  const { user } = useUser();
+  const name = user?.fullName
+  const email = user?.emailAddresses[0].emailAddress
   return (
     <div className="space-y-4">
       <h2 className="text-xl font-semibold mb-4">Personal Information</h2>
@@ -24,7 +28,7 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
         <input
           type="text"
           placeholder="Full Name"
-          value={personalInfo.name}
+          value={name || personalInfo.name}
           onChange={(e) => onChange("name", e.target.value)}
           className="flex-1 p-2 border rounded focus:ring-2 focus:ring-blue-500"
         />
@@ -35,7 +39,7 @@ export const PersonalInfoForm: React.FC<PersonalInfoFormProps> = ({
         <input
           type="email"
           placeholder="Email"
-          value={personalInfo.email}
+          value={email || personalInfo.email}
           onChange={(e) => onChange("email", e.target.value)}
           className="flex-1 p-2 border rounded focus:ring-2 focus:ring-blue-500"
         />

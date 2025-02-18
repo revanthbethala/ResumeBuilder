@@ -10,8 +10,10 @@ import { WorkExperienceForm } from "../WorkExperienceForm";
 import { SkillsForm } from "../SkillsForm";
 import { ThemeCustomizer } from "../ThemeCustomizer";
 import { ResumePreview } from "../ResumePreview";
+import { useUser } from "@clerk/clerk-react";
 
 export const ResumeBuilder: React.FC = () => {
+
   const { resumeData, isImporting, handlers } = useResumeData();
   const { theme, handleThemeChange } = useTheme();
   const { toPDF, targetRef } = usePDF({
